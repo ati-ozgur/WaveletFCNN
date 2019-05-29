@@ -10,15 +10,15 @@ This code follows the implementation in
 https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/master/FCN.py
 '''
 
-MAIN_UCR_DATASET_FOLDER = "../../../bitbucket/timeseries/RTimeSeries/Datasets/TSCDatasets2015"
+MAIN_UCR_DATASET_FOLDER = "../../../bitbucket/timeseries/RTimeSeries/Datasets/TSCDatasets2015/TSCDatasets"
 
 
 def read_UCR_dataset_train(dataset):
-    train_filename = f"{MAIN_UCR_DATASET_FOLDER}/{dataset}/{dataset}/_TRAIN"
+    train_filename = f"{MAIN_UCR_DATASET_FOLDER}/{dataset}/{dataset}_TRAIN.txt"
     return read_UCR_dataset(train_filename)
 
 def read_UCR_dataset_test(dataset):
-    train_filename = f"{MAIN_UCR_DATASET_FOLDER}/{dataset}/{dataset}/_TEST"
+    train_filename = f"{MAIN_UCR_DATASET_FOLDER}/{dataset}/{dataset}_TEST.txt"
     return read_UCR_dataset(train_filename)
 
 def read_UCR_dataset(filename):
@@ -163,7 +163,7 @@ def wavelet_FCNN_model(dataset, epochs_num, wavelet_level=4, wavelet_filter='haa
 
 def main():
     parser = argparse.ArgumentParser(description='PyTorch DNN on google speech dataset (model parallelism distributed)')
-    parser.add_argument('--dataset', type=str, default='50words', metavar='S',
+    parser.add_argument('--dataset', type=str, default='Adiac', metavar='S',
                         help='which dataset to train')
     parser.add_argument('--epochs', type=int, default=2000, metavar='N',
                         help='number of epochs to train (default: 2000)')
