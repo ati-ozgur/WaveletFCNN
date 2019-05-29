@@ -162,11 +162,11 @@ def wavelet_FCNN_model(dataset, epochs_num, wavelet_level=4, wavelet_filter='haa
 
 
 def main():
-    parser = argparse.ArgumentParser(description='PyTorch DNN on google speech dataset (model parallelism distributed)')
+    parser = argparse.ArgumentParser(description='WaveletFCNN description')
     parser.add_argument('--dataset', type=str, default='Adiac', metavar='S',
                         help='which dataset to train')
-    parser.add_argument('--epochs', type=int, default=2000, metavar='N',
-                        help='number of epochs to train (default: 2000)')
+    parser.add_argument('--epochs', type=int, default=10, metavar='N',
+                        help='number of epochs to train (default: 10)')
     parser.add_argument('--wavelet-level', type=int, default=4, metavar='N',
                         help='wavelet level for training (default: 4)')
 
