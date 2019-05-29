@@ -34,20 +34,20 @@ def wavelet_FCNN_preprocessing_training_set(X, wavelet_level=3, wavelet_filter='
     signal_length = []
     signal_length.append(length)
     stats = []
-    extened_X = []
-    extened_X.append(X)
+    extended_X = []
+    extended_X.append(X)
     for i in range(N):# for each signal
         wavelet_list = pywt.wavedec(X[i], wavelet_filter, level=wavelet_level)
         if i == 0:
             for l in range(wavelet_level):
                 current_length = len(wavelet_list[wavelet_level - l])
                 signal_length.append(current_length)
-                extened_X.append(np.zeros((N,current_length)))
+                extended_X.append(np.zeros((N,current_length)))
         for l in range(wavelet_level):
-            extened_X[l+1][i] = wavelet_list[wavelet_level - l]
+            extended_X[l+1][i] = wavelet_list[wavelet_level - l]
     result = None
     first = True
-    for mat in extened_X:
+    for mat in extended_X:
         mat_mean = mat.mean()
         mat_std = mat.std()
         mat = (mat-mat_mean)/(mat_std)
@@ -64,20 +64,20 @@ def wavelet_FCNN_preprocessing_training_set(X, wavelet_level=3, wavelet_filter='
 def wavelet_FCNN_preprocessing_test_set(X, stats, wavelet_level=3, wavelet_filter='haar'):
     assert(len(stats) == wavelet_level + 1)
     N = X.shape[0]
-    extened_X = []
-    extened_X.append(X)
+    extended_X = []
+    extended_X.append(X)
     for i in range(N):  # for each signal
         wavelet_list = pywt.wavedec(X[i], wavelet_filter, level=wavelet_level)
         if i == 0:
             for l in range(wavelet_level):
                 current_length = len(wavelet_list[wavelet_level - l])
-                extened_X.append(np.zeros((N, current_length)))
+                extended_X.append(np.zeros((N, current_length)))
         for l in range(wavelet_level):
-            extened_X[l + 1][i] = wavelet_list[wavelet_level - l]
+            extended_X[l + 1][i] = wavelet_list[wavelet_level - l]
     result = None
     first = True
-    for i in range(len(extened_X)):
-        mat = extened_X[i]
+    for i in range(len(extended_X)):
+        mat = extended_X[i]
         mat_mean = stats[i][0]
         mat_std = stats[i][1]
         mat = (mat - mat_mean) / (mat_std)
