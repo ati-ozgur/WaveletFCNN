@@ -10,6 +10,16 @@ This code follows the implementation in
 https://github.com/cauchyturing/UCR_Time_Series_Classification_Deep_Learning_Baseline/blob/master/FCN.py
 '''
 
+MAIN_UCR_DATASET_FOLDER = "../../../bitbucket/timeseries/RTimeSeries/Datasets/TSCDatasets2015"
+
+
+def read_UCR_dataset_train(dataset):
+    train_filename = f"{MAIN_UCR_DATASET_FOLDER}/{dataset}/{dataset}/_TRAIN"
+    return read_UCR_dataset(train_filename)
+
+def read_UCR_dataset_test(dataset):
+    train_filename = f"{MAIN_UCR_DATASET_FOLDER}/{dataset}/{dataset}/_TEST"
+    return read_UCR_dataset(train_filename)
 
 def read_UCR_dataset(filename):
     data = np.loadtxt(filename, delimiter = ',')
@@ -81,8 +91,8 @@ def wavelet_FCNN_preprocessing_test_set(X, stats, wavelet_level=3, wavelet_filte
 
 def wavelet_FCNN_model(dataset, epochs_num, wavelet_level=4, wavelet_filter='haar'):
     # load the data
-    x_train, y_train = read_UCR_dataset('./UCR_TS_Archive_2015/' + dataset + '/' + dataset + '_TRAIN')
-    x_test, y_test = read_UCR_dataset('./UCR_TS_Archive_2015/' + dataset + '/' + dataset + '_TEST')
+    x_train, y_train = read_UCR_dataset_train(dataset)
+    x_test, y_test =read_UCR_dataset_test(dataset) 
 
     # pre-processing the data
     class_num = len(np.unique(y_train))
